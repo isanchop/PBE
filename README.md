@@ -9,11 +9,11 @@ First puzzle consists on reading the UID of an RFID card using the module "NXP P
 
 
     | PN532 Module PIN | RPI GPIO  |
-    | :----- |----:|
-    | GND | 6 |
-    | VCC | 4 |
-    | SDA | 3 |
-    | SCL | 5 |
+    | :---------------:|:---------:|
+    | GND              | 6         |
+    | VCC              | 4         |
+    | SDA              | 3         |
+    | SCL              | 5         |
 
 ### Requirements 
     pip3 install adafruit-circuitpython-pn532
