@@ -8,30 +8,40 @@
 
 import board
 import busio
+from adafruit_pn532.i2c import PN532_I2C
 from time import sleep
 
-from digitalio import DigitalInOut
-from adafruit_pn532.i2c import PN532_I2C
+class Rfid: 
+    def __init__(self):
+        # I2C connection:
+        self.i2c = busio.I2C(board.SCL, board.SDA)
+        self.pn532 = PN532_I2C(self.i2c, debug=False)
+        # Configure PN532 to communicate with MiFare cards
+        self.pn532.SAM_configuration()
 
-# I2C connection:
-i2c = busio.I2C(board.SCL, board.SDA)
-pn532 = PN532_I2C(i2c, debug=False)
+    
+    def read_uid(self):
+        while True:
+            # Check if a card is available to read
+            uid = self.pn532.read_passive_target(timeout=0.5)
+            # Try again until card is available.
+            if uid:
+                return uid.hex().upper()
 
-# Get the chip firmware version
-ic, ver, rev, support = pn532.firmware_version
-print("Found PN532 with firmware version: {0}.{1}".format(ver, rev))
 
-# Configure PN532 to communicate with MiFare cards
-pn532.SAM_configuration()
-print("Waiting for RFID/NFC card...")
 
-while True:
-    # Check if a card is available to read
-    uid = pn532.read_passive_target(timeout=0.5)
-    # Try again if no card is available.
-    if uid is None:
-        continue
-    # Print the UID number on console
-    print("Found card with UID:", int.from_bytes(uid, "big"))
-    # Wait one second to make the next reading
-    sleep(1)
+if __name__ == "__main__":
+    # Init Rfid
+    rf = Rfid()
+    print("Waiting for RFID/NFC card...")
+    # Infinnte loop until a key is pressed
+    try:
+        while True:
+            # Read the UID
+            uid = rf.read_uid()
+            # Print the UID number on console
+            print("Found card with UID:", uid)
+            # Wait one second to make the next reading
+            sleep(1)
+    except KeyboardInterrupt:
+        pass 
