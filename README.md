@@ -5,7 +5,7 @@ Course at UPC
 First puzzle consists on reading the UID of an RFID card using the module "NXP PN532 NFC RFID" on a Raspberry Pi 3b+
 
 ### Esquematic:
-    ![alt text][img-1]
+![alt text][img-1]
     
 | PN532 Module PIN | RPI GPIO  |
 |:----------------:|:---------:|
