@@ -1,21 +1,21 @@
 ###########################################################################
 ###########################################################################
-#### This example shows connecting to the PN532 with I2C.              ####
+#### This example shows connecting to the PN532 with UART.              ####
 #### We are using the adafruit library.                                ####
 #### This program will read an rfid card and show it's uid on console. ####
 ###########################################################################
 ###########################################################################
 
-import board
-import busio
-from adafruit_pn532.i2c import PN532_I2C
+
+import serial
+from adafruit_pn532.uart import PN532_UART
 from time import sleep
 
 class Rfid: 
     def __init__(self):
-        # I2C connection:
-        self.i2c = busio.I2C(board.SCL, board.SDA)
-        self.pn532 = PN532_I2C(self.i2c, debug=False)
+        # UART connection:
+        self.uart = serial.Serial("/dev/ttyS0", baudrate=115200, timeout=0.5)
+        self.pn532 = PN532_UART(self.uart, debug=False)
         # Configure PN532 to communicate with MiFare cards
         self.pn532.SAM_configuration()
 
