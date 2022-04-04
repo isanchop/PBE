@@ -47,3 +47,16 @@ First puzzle consists on reading the UID of an RFID card using the module "NXP P
 ### Run code:
     python3 puzzle1.py
 
+## Puzzle 2
+Second puzzle consists on create a simple GUI for the first puzzle. We are working with PyGObject library for python
+
+### Out put
+
+<img align="center" src="https://user-images.githubusercontent.com/67743899/157332390-9396b52a-21bc-4ea1-b055-397795b00e75.png" width=300px>
+
+
+### Requirements:
+    pip3 install PyGObject
+
+### Run code:
+    python3 puzzle2.py
