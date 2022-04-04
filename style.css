@@ -1,0 +1,13 @@
+#first-label { 
+	border-radius: 10px; 
+	font-size: 20px; 
+	background: blue; 
+	color: white; 
+}
+
+#second-label { 
+	border-radius: 10px; 
+	font-size: 20px; 
+	background: green; 
+	color: white; 
+}
